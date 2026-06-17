@@ -16,6 +16,7 @@
 // --- include ---
 
 # include <stdlib.h>
+# include <unistd.h>
 
 // --- DOC ---
 
@@ -25,32 +26,37 @@
 
 // --- Makros ---
 
-# define YOUR_MAKRO 42
+# define STDOUT 1
 
 // --- prototype ---
 
 // utils
-
-void	lxy_putnbr_base(ssize_t nbr, const char *base);
-int		lxy_len_if_valid(void);
+int put_unsigned_int_base(unsigned int u); 
+int put_unsigned_int_base(unsigned long lu);
+int put_unsigned_int_base(size_t zu);
+int	lxy_len_if_valid(const char *base);
 
 // put functions
 
-void	lxy_put_char(char c);
-void	lxy_put_percent_sign(void);
-void	lxy_put_trigger_hashflag(void);
-void	lxy_put_str(char *s);
-void	lxy_put_decimal(int dec);
-void	lxy_put_unsdecimal(void);
-void	lxy_put_hexa_lowercase(ssize_t);
-void	lxy_put_hexa_uppercase(ssize_t);
-void	lxy_put_pointer(void *ptr):
+int	lxy_put_char(char c);
+int	lxy_put_percent_sign(void);
+int	lxy_put_trigger_hashflag(void);
+int	lxy_put_str(char *s);
+int	lxy_put_decimal(int dec);
+int	lxy_put_unsdecimal(int);
+int	lxy_put_hexa_lowercase(unsigned int u);
+int	lxy_put_hexa_uppercase(unsigned int u);
+int	lxy_put_long_hexa_lowercase(unsigned long lu);
+int	lxy_put_long_hexa_uppercase(unsigned long lu);
+int	lxy_put_long_long_hexa_lowercase(size_t zu);
+int	lxy_put_long_long_hexa_uppercase(size_t zu);
+int	lxy_put_pointer(void *ptr);
 
 // not sure if I will implement them
-void	lxy_put_long(long dec);
-void	lxy_put_unslong(long dec);
-void	lxy_put_float(float f);
-void	lxy_put_double(double fl);
+int	lxy_put_long(long dec);
+int	lxy_put_unslong(long dec);
+int	lxy_put_float(float f);
+int	lxy_put_double(double fl);
 
 // --- end ---
 
