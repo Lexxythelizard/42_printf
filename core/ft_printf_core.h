@@ -31,9 +31,9 @@
 // --- prototype ---
 
 // utils
-int put_unsigned_int_base(unsigned int u); 
-int put_unsigned_int_base(unsigned long lu);
-int put_unsigned_int_base(size_t zu);
+int lxy_put_unsigned_int_base(unsigned int u, const char *base); 
+int lxy_put_unsigned_long_base(unsigned long lu, const char *base);
+int lxy_put_size_t_base(size_t zu, const char *base);
 int	lxy_len_if_valid(const char *base);
 
 // put functions
