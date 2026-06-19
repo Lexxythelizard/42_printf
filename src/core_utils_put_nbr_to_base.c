@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   core_utils_put_nbr_to_base.c                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/19 16:58:43 by lenivorb          #+#    #+#             */
+/*   Updated: 2026/06/19 19:06:00 by lenivorb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 // --- icludes ---
 
 #include "../core/ft_printf_core.h"
@@ -10,6 +22,7 @@
 
 // --- prototype ---
 
+static unsigned int	lxy_len_if_valid(const char *base);
 
 // --- define ---
 
@@ -23,21 +36,22 @@ int	lxy_put_unsigned_int_base(
 	unsigned int	divisor;
 
 	divisor = 1;
+	len = 0;
 	base_n = lxy_len_if_valid(base);
 	if (base_n < 2)
 		return (-1);
 	while ((unsigned int)(u / divisor) >= base_n)
-		divisor *= base;
+		divisor *= base_n;
 	while (divisor >= base_n)
 	{
-		wrt= write(STDTOU, &(base[((unsigned int)(u / base_n))]));
+		wrt = write(STDOUT, &(base[((unsigned int)(u / base_n))]), 1);
 		u %= divisor;
 		divisor /= base_n;
 		if (wrt < 0)
 			return (-1);
 		len += wrt;
 	}
-	wrt = write(STDTOU, &(base[((unsigned int)(u / base_n))]));
+	wrt = write(STDOUT, &(base[((unsigned int)(u / base_n))]), 1);
 	if (wrt < 0)
 		return (-1);
 	return ((int)(len + wrt));
@@ -55,21 +69,22 @@ int	lxy_put_unsigned_long_base(
 	unsigned long	divisor;
 
 	divisor = 1;
+	len = 0;
 	base_n = (unsigned long)(lxy_len_if_valid(base));
 	if (base_n < 2)
 		return (-1);
-	while ((unsigned long)(u / divisor) >= base_n)
-		divisor *= base;
+	while ((unsigned long)(lu / divisor) >= base_n)
+		divisor *= base_n;
 	while (divisor >= base_n)
 	{
-		wrt= write(STDTOU, &(base[((unsigned long)(u / base_n))]));
-		u %= divisor;
+		wrt = write(STDOUT, &(base[((unsigned long)(lu / base_n))]), 1);
+		lu %= divisor;
 		divisor /= base_n;
 		if (wrt < 0)
 			return (-1);
 		len += wrt;
 	}
-	wrt = write(STDTOU, &(base[((unsigned long)(u / base_n))]));
+	wrt = write(STDOUT, &(base[((unsigned long)(lu / base_n))]), 1);
 	if (wrt < 0)
 		return (-1);
 	return ((int)(len + wrt));
@@ -87,21 +102,22 @@ int	lxy_put_size_t_base(
 	size_t	divisor;
 
 	divisor = 1;
+	len = 0;
 	base_n = (size_t)(lxy_len_if_valid(base));
 	if (base_n < 2)
 		return (-1);
-	while ((size_t)(u / divisor) >= base_n)
-		divisor *= base;
+	while ((size_t)(zu / divisor) >= base_n)
+		divisor *= base_n;
 	while (divisor >= base_n)
 	{
-		wrt= write(STDTOU, &(base[((size_t)(u / base_n))]));
-		u %= divisor;
+		wrt = write(STDOUT, &(base[((size_t)(zu / base_n))]), 1);
+		zu %= divisor;
 		divisor /= base_n;
 		if (wrt < 0)
 			return (-1);
 		len += wrt;
 	}
-	wrt = write(STDTOU, &(base[((size_t)(u / base_n))]));
+	wrt = write(STDOUT, &(base[((size_t)(zu / base_n))]), 1);
 	if (wrt < 0)
 		return (-1);
 	return ((int)(len + wrt));
@@ -110,17 +126,17 @@ int	lxy_put_size_t_base(
 static unsigned int	lxy_len_if_valid(const char *base)
 {
 	int				len;
-	int				i;
 	unsigned char	ascii[128];
 
+	len = 0;
 	if (!base)
 		return (0);
-	while (base[i])
+	while (base[len])
 	{
-		if (ascii[((int)(base[i]))])
+		if (ascii[((int)(base[len]))])
 			return (0);
-		ascii[((int)(base[i]))]++;
-		i++;
+		ascii[((int)(base[len]))]++;
+		len++;
 	}
-	return (i);
+	return (len);
 }

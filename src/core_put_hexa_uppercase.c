@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   core_put_hexa_uppercase.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/19 16:56:45 by lenivorb          #+#    #+#             */
+/*   Updated: 2026/06/19 16:56:48 by lenivorb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 // --- icludes ---
 
 #include "../core/ft_printf_core.h"
@@ -7,12 +19,6 @@
 /*
 	... your comment here ...
 */
-
-// --- prototype ---
-
-int	lxy_put_hexa_uppercase(unsigned int u);
-int	lxy_put_long_hexa_uppercase(unsigned long lu);
-int	lxy_put_long_long_hexa_uppercase(size_t zu);
 
 // --- define ---
 

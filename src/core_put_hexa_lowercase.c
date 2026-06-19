@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   core_put_hexa_lowercase.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/19 16:56:26 by lenivorb          #+#    #+#             */
+/*   Updated: 2026/06/19 16:56:28 by lenivorb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 // --- icludes ---
 
 #include "../core/ft_printf_core.h"
@@ -7,12 +19,6 @@
 /*
 	... your comment here ...
 */
-
-// --- prototype ---
-
-int	lxy_put_hexa_lowercase(unsigned int u);
-int	lxy_put_long_hexa_lowercase(unsigned long lu);
-int	lxy_put_long_long_hexa_lowercase(size_t zu);
 
 // --- define ---
 

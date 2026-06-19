@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   core_put_abstraction.c                             :+:      :+:    :+:   */
+/*   core_put_chars.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/19 16:55:47 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/19 19:08:56 by lenivorb         ###   ########.fr       */
+/*   Created: 2026/06/19 16:55:08 by lenivorb          #+#    #+#             */
+/*   Updated: 2026/06/19 18:39:07 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,17 @@
 
 // --- define ---
 
-int	lxy_put_percent_sign(void)
+int	lxy_put_char(char c)
 {
-	return (lxy_put_char(37));
+	return ((int)(write(STDOUT, &c, 1)));
 }
 
-int	lxy_put_trigger_hashflag(void)
+int	lxy_put_str(const char *s)
 {
-	return (lxy_put_str("0x"));
-}
+	int	len;
 
-int	lxy_put_white_space(int n)
-{
-	int	written;
-
-	written = n;
-	while (n--)
-	{
-		if (lxy_put_char(32) == (-1))
-			return (-1);
-	}
-	return (written);
+	len = lxy_strlen(s);
+	if (len < 0)
+		return (-1);
+	return ((int)(write(STDOUT, s, len)));
 }

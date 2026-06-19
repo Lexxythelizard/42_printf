@@ -6,7 +6,7 @@
 #    By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/10 19:30:37 by lenivorb          #+#    #+#              #
-#    Updated: 2026/06/16 18:36:31 by lenivorb         ###   ########.fr        #
+#    Updated: 2026/06/19 19:06:58 by lenivorb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,62 +14,78 @@
 
 # library name
 
-NAME		= 	./libftprintf.a
+NAME			= 	./libftprintf.a
+
+NAME_TEST		= 	./libcore.a
 
 # MODE
 
-DEBUGG_MODE	=	0
+DEBUGG_MODE		=	0
 
 # for compile
 
-Compile 	= 	cc
+Compile 		= 	cc
 
-Flags 		= 	-Wall -Wextra -Werror
+Flags 			= 	-Wall -Wextra -Werror
 
-Include 	= 	-I
+Include 		= 	-I
 
-Dont_link 	= 	-c
+Dont_link 		= 	-c
 
-Dest	 	= 	-o
+Dest	 		= 	-o
 
-Debugg_mode	=	-g
+Debugg_mode		=	-g
 
 # directories
 
-This_Dir	=	.
+This_Dir		=	.
 
-Core_Dir	= 	$(This_Dir)/core
+Core_Dir		= 	$(This_Dir)/core
 
-Src_Dir		= 	$(This_Dir)/src
+Src_Dir			= 	$(This_Dir)/src
 
-Struct_Dir	= 	$(This_Dir)/struct
+Struct_Dir		= 	$(This_Dir)/struct
 
 # headers
 
-User_Lib 	= 	ft_prinft.h
+User_Lib 		= 	ft_prinft.h
 
-Incl_This	=	$(Include) $(This_Dir)
+Incl_This		=	$(Include) $(This_Dir)
 
-Incl_Core	=	$(Include) $(Core_Dir)
+Incl_Core		=	$(Include) $(Core_Dir)
 
-Incl_Struct	=	$(Include) $(Struct_Dir)
+Incl_Struct		=	$(Include) $(Struct_Dir)
 
 # soruce files
 
-Src_Files	=	$(Core_Dir)/[file].c \
-				$(Core_Dir)/[file].
+SrcCore_Files	=	$(Src_Dir)/core_put_abstraction.c \
+					$(Src_Dir)/core_put_chars.c \
+    	            $(Src_Dir)/core_put_hexa_lowercase.c \
+        	        $(Src_Dir)/core_put_hexa_uppercase.c \
+            	    $(Src_Dir)/core_put_hexa_uppercase.c \
+					$(Src_Dir)/core_put_unsigned_nbr.c \
+    	            $(Src_Dir)/core_utils_put_nbr_to_base.c 
 
-Obj_Files 	=	$(Src_Core:.c=.o)
+Src_Files		=	$(SrcCore_Files) \
+					$(Src_Dir)/ft_printf.c 
+
+# --------------------> set default
+default: all
+# <-------------------- end default
+
+SrcCore_Obj 	=	$(SrcCore_Files:.c=.o)
+
+Src_Obj 		=	$(Src_Files:.c=.o)
 
 # -------------------- compile rules --------------------
 
-$(Obj_Files): %.o: %.c
+$(SrcCore_Obj): %.o: %.c
 	if [ "$(DEBUGG_MODE)" -eq "1" ]; then \
 		$(Compile) $(Flags) $(Dont_link) $(Debugg_mode) \
-		$(Incl_Struct) $(Incl_Core) $< $(Dest) $@; \
+		$(Incl_Core) $< $(Dest) $@; \
 	else \
 		$(Compile) $(Flags) $(Dont_link) \
-		$(Incl_Struct) $(Incl_Core) $< $(Dest) $@; \
+		$(Incl_Core) $< $(Dest) $@; \
 	fi
 
 # -------------------- commands --------------------
@@ -84,7 +100,10 @@ fclean: clean
 clean: clean_src
 
 clean_src:
-	rm -f $(Obj_Files) $@
+	rm -f $(Src_Obj) $@
+
+clean_srccore:
+	rm -f $(SrcCore_Obj) $@
 
 # -------------------- library --------------------
 
@@ -95,8 +114,11 @@ $(NAME): $(Obj_Files)
 
 # --------> Core
 
-create_src: $(Obj_Files)
+create_srccore: $(SrcCore_Obj)
+
+create_testcore: $(SrcCore_Obj)
+	ar rcs $(NAME_TEST) $(SrcCore_Obj)
 
 # -------------------- PHONY --------------------
 
-.PHONY: all re fclean clean clean_src create_src
+.PHONY: all re fclean clean clean_src create_src create_testcore default

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   core_put_unsigned_nbr.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/19 16:57:29 by lenivorb          #+#    #+#             */
+/*   Updated: 2026/06/19 16:57:31 by lenivorb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 // --- icludes ---
 
 #include "../core/ft_printf_core.h"
@@ -7,12 +19,6 @@
 /*
 	... your comment here ...
 */
-
-// --- prototype ---
-
-int	lxy_put_unsigned_int(unsigned int u);
-int	lxy_put_unsigned_long(unsigned long lu);
-int	lxy_put_size_t(size_t zu);
 
 // --- define ---
 

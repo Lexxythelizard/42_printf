@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   core_put_signed_nbr.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/19 16:57:06 by lenivorb          #+#    #+#             */
+/*   Updated: 2026/06/19 16:57:08 by lenivorb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 // --- icludes ---
 
 #include "../core/ft_printf_core.h"
@@ -7,12 +19,6 @@
 /*
 	... your comment here ...
 */
-
-// --- prototype ---
-
-int	lxy_put_signed_int(int i);
-int	lxy_put_signed_long(long l);
-int	lxy_put_ssize_t(ssize_t sz);
 
 // --- define ---
 
