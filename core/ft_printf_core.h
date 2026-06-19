@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:44:49 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/19 19:14:06 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/19 20:46:53 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // --- include ---
 
 # include <stdlib.h>
+# include <limits.h>
 # include <unistd.h>
 
 // --- DOC ---
@@ -30,6 +31,9 @@
 # define HEXDEC_LO "0123456789abcdef"
 # define HEXDEC_UP "0123456789ABCDEF"
 # define DECDEC "0123456789"
+
+# define SSZ_MIN LONG_MIN
+# define SSZ_MAX LONG_MAX
 
 // --- prototype ---
 

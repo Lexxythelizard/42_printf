@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 18:32:31 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/19 18:36:13 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/19 20:22:03 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	lxy_strlen(const char *s)
 {
 	int	len;
 
+	len = 0;
 	if (!s)
 		return (-1);
 	while (s[len])

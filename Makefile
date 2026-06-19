@@ -6,7 +6,7 @@
 #    By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/10 19:30:37 by lenivorb          #+#    #+#              #
-#    Updated: 2026/06/19 19:06:58 by lenivorb         ###   ########.fr        #
+#    Updated: 2026/06/19 20:50:39 by lenivorb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAME_TEST		= 	./libcore.a
 
 # MODE
 
-DEBUGG_MODE		=	0
+DEBUGG_MODE		=	1
 
 # for compile
 
@@ -63,7 +63,9 @@ SrcCore_Files	=	$(Src_Dir)/core_put_abstraction.c \
     	            $(Src_Dir)/core_put_hexa_lowercase.c \
         	        $(Src_Dir)/core_put_hexa_uppercase.c \
             	    $(Src_Dir)/core_put_hexa_uppercase.c \
+					$(Src_Dir)/core_put_signed_nbr.c \
 					$(Src_Dir)/core_put_unsigned_nbr.c \
+					$(Src_Dir)/core_utils_get_strlen.c \
     	            $(Src_Dir)/core_utils_put_nbr_to_base.c 
 
 Src_Files		=	$(SrcCore_Files) \

@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 16:57:06 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/19 16:57:08 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/19 20:49:28 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 // --- define ---
 
-int	lxy_put_unsigned_int(int i)
+int	lxy_put_signed_int(int i)
 {
 	int				wrt0;
 	int				wrt1;
@@ -78,12 +78,12 @@ int	lxy_put_ssize_t(ssize_t sz)
 
 	wrt0 = 0;
 	wrt1 = 0;
-	if (l < 0)
+	if (sz < 0)
 		wrt0 = lxy_put_char(43);
 	if (wrt0 < 0)
 		return (-1);
-	if (wrt0 && (sz == SSIZE_MIN))
-		pass = (((size_t)(SSIZE_MAX)) + 1);
+	if (wrt0 && (sz == SSZ_MIN))
+		pass = (((size_t)(SSZ_MAX)) + 1);
 	else if (wrt0)
 		pass = ((size_t)(sz * (-1)));
 	else

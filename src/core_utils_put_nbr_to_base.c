@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 16:58:43 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/19 19:06:00 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/19 22:13:16 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	lxy_put_unsigned_int_base(
 			return (-1);
 		len += wrt;
 	}
-	wrt = write(STDOUT, &(base[((unsigned int)(u / base_n))]), 1);
+	wrt = write(STDOUT, &(base[u]), 1);
 	if (wrt < 0)
 		return (-1);
 	return ((int)(len + wrt));
@@ -84,7 +84,7 @@ int	lxy_put_unsigned_long_base(
 			return (-1);
 		len += wrt;
 	}
-	wrt = write(STDOUT, &(base[((unsigned long)(lu / base_n))]), 1);
+	wrt = write(STDOUT, &(base[lu]), 1);
 	if (wrt < 0)
 		return (-1);
 	return ((int)(len + wrt));
@@ -117,7 +117,7 @@ int	lxy_put_size_t_base(
 			return (-1);
 		len += wrt;
 	}
-	wrt = write(STDOUT, &(base[((size_t)(zu / base_n))]), 1);
+	wrt = write(STDOUT, &(base[zu]), 1);
 	if (wrt < 0)
 		return (-1);
 	return ((int)(len + wrt));
@@ -131,6 +131,9 @@ static unsigned int	lxy_len_if_valid(const char *base)
 	len = 0;
 	if (!base)
 		return (0);
+	while (len++ < 128)
+		ascii[(len - 1)] = 0;
+	len = 0;
 	while (base[len])
 	{
 		if (ascii[((int)(base[len]))])
