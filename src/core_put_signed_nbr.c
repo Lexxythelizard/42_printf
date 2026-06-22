@@ -31,11 +31,11 @@ int	lxy_put_signed_int(int i)
 	wrt0 = 0;
 	wrt1 = 0;
 	if (i < 0)
-		wrt0 = lxy_put_char(43);
+		wrt0 = lxy_put_char(45);
 	if (wrt0 < 0)
 		return (-1);
 	if (wrt0 && (i == INT_MIN))
-		pass = (((unsigned int)(INT_MAX)) + 1);
+		pass = ((unsigned int)((i + 1) * (-1))) + 1;
 	else if (wrt0)
 		pass = ((unsigned int)(i * (-1)));
 	else
@@ -55,7 +55,7 @@ int	lxy_put_signed_long(long l)
 	wrt0 = 0;
 	wrt1 = 0;
 	if (l < 0)
-		wrt0 = lxy_put_char(43);
+		wrt0 = lxy_put_char(45);
 	if (wrt0 < 0)
 		return (-1);
 	if (wrt0 && (l == LONG_MIN))
@@ -79,7 +79,7 @@ int	lxy_put_ssize_t(ssize_t sz)
 	wrt0 = 0;
 	wrt1 = 0;
 	if (sz < 0)
-		wrt0 = lxy_put_char(43);
+		wrt0 = lxy_put_char(45);
 	if (wrt0 < 0)
 		return (-1);
 	if (wrt0 && (sz == SSZ_MIN))
