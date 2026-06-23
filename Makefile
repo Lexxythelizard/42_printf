@@ -6,7 +6,7 @@
 #    By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/10 19:30:37 by lenivorb          #+#    #+#              #
-#    Updated: 2026/06/19 20:50:39 by lenivorb         ###   ########.fr        #
+#    Updated: 2026/06/23 20:45:03 by lenivorb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,13 +58,17 @@ Incl_Struct		=	$(Include) $(Struct_Dir)
 
 # soruce files
 
-SrcCore_Files	=	$(Src_Dir)/core_put_abstraction.c \
+SrcCore_Files	=	$(Src_Dir)/core_call_put_0.c \
+					$(Src_Dir)/core_call_put_1.c \
+					$(Src_Dir)/core_flags.c \
+					$(Src_Dir)/core_put_abstraction.c \
 					$(Src_Dir)/core_put_chars.c \
     	            $(Src_Dir)/core_put_hexa_lowercase.c \
         	        $(Src_Dir)/core_put_hexa_uppercase.c \
             	    $(Src_Dir)/core_put_hexa_uppercase.c \
 					$(Src_Dir)/core_put_signed_nbr.c \
 					$(Src_Dir)/core_put_unsigned_nbr.c \
+					$(Src_Dir)/core_scan.c \
 					$(Src_Dir)/core_utils_get_strlen.c \
     	            $(Src_Dir)/core_utils_put_nbr_to_base.c 
 
