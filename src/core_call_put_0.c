@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:39:28 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/23 20:47:11 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/25 14:49:57 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
 
 int	(*get_unsigned_int_func(const char *spec))(unsigned int u)
 {
-	if (lxy_compare(spec, "u"))
+	if (*spec == 'u')
 		return (&lxy_put_unsigned_int);
-	else if (lxy_compare(spec, "x"))
+	else if (*spec == 'x')
 		return (&lxy_put_hexa_lowercase);
 	else
 		return (&lxy_put_hexa_uppercase);
@@ -39,9 +39,9 @@ int	(*get_unsigned_int_func(const char *spec))(unsigned int u)
 
 int	(*get_unsigned_long_func(const char *spec))(unsigned long ul)
 {
-	if (lxy_compare(spec, "lu"))
+	if (is_equal(spec, "lu", 2))
 		return (&lxy_put_unsigned_long);
-	else if (lxy_compare(spec, "xl"))
+	else if (is_equal(spec, "xl", 2))
 		return (&lxy_put_long_hexa_lowercase);
 	else
 		return (&lxy_put_long_hexa_uppercase);
@@ -51,9 +51,9 @@ int	(*get_unsigned_long_func(const char *spec))(unsigned long ul)
 
 int	(*get_size_t_func(const char *spec))(size_t zu)
 {
-	if (lxy_compare(spec, "zu"))
+	if (is_equal(spec, "zu", 2))
 		return (&lxy_put_size_t);
-	else if (lxy_compare(spec, "xz"))
+	else if (is_equal(spec, "xz", 2))
 		return (&lxy_put_long_long_hexa_lowercase);
 	else
 		return (&lxy_put_long_long_hexa_uppercase);

@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:44:49 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/23 20:44:00 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/25 17:48:42 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <limits.h>
+# include <stdint.h>
 # include <unistd.h>
 
 // --- DOC ---
@@ -63,13 +64,14 @@ int		lxy_strlen(const char *s);
 int		is_flag(unsigned char c);
 int		is_specifier(unsigned char c);
 int		is_percent(unsigned char c);
+int		is_equal(const char *s1, const char *s2, int size);
 
 // flags
 t_flags	*init_flag(void);
 
 // get functions
 int		(*get_char_func(const char *spec))(char c);
-int		(*get_string_func(const char *spec))(char *s);
+int		(*get_string_func(const char *spec))(const char *s);
 int		(*get_long_func(const char *spec))(long l);
 int		(*get_ssize_t_func(const char *spec))(ssize_t z);
 int		(*get_signed_int_func(const char *spec))(int i);
@@ -86,7 +88,7 @@ int		lxy_put_trigger_hashflag(void);
 int		lxy_put_white_space(int n);
 
 int		lxy_put_decimal(int dec);
-int		lxy_put_unsdecimal(int udec);
+int		lxy_put_undecimal(unsigned int udec);
 
 int		lxy_put_signed_int(int i); 
 int		lxy_put_signed_long(long l); 

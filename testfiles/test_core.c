@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 19:27:47 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/19 20:28:40 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/25 17:58:33 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,31 @@
 // --- DOC ---
 
 /*
-	... your comment here ...
+	TODO:
+		- test		lxy_put_char()						:	DONE
+		- test		lxy_put_str()						:	DONE
+		- test		lxy_put_space()						:	DONE
+		- test		lxy_put_trigger_hashflag()			:	DONE
+		- test		lxy_put_signed_int()				:	DONE
+		- test		lxy_put_unsigned_int()				:	DONE
+		- test		lxy_put_unsigned_number_base()		:	DONE
+		- test		lxy_put__decimal()					:	DONE
+		- test		lxy_put_undecimal()					:	DONE
+		- test		lxy_put_signed_long()				:	DONE
+		- test		lxy_put_size_t()					:	DONE
+		- test		lxy_put_hexa_lowercase()			:	DONE
+		- test		lxy_put_hexa_uppercase()			:	DONE
 */
 
 // --- run ---
 
 int	main(void)
 {
-	int count;
+	int 	count;
+	void	*ptr;
 
 	count = 0;
+	ptr = malloc(1);
 	lxy_put_str("\n+++++++++++++++++++++++++++++++++\n\n");
 	lxy_put_str("test1:\n");
 	lxy_put_str("lxy_put_char(\'c\');\n");
@@ -104,5 +119,33 @@ int	main(void)
 	lxy_put_str("\tcharacters: ");
 	lxy_put_signed_int(count);
 	lxy_put_char(10);
+
+	lxy_put_str("\n--------------------------------\n");
+	lxy_put_str("test 3:\n");
+	lxy_put_str("lxy_put_pointer(ptr);\n");
+	lxy_put_pointer(ptr);
+	lxy_put_str("\n");
+	lxy_put_str("lxy_put_decimal(42);\n");
+	lxy_put_decimal(42);
+	lxy_put_str("\n");
+	lxy_put_str("lxy_put_undecimal(42);\n");
+	lxy_put_undecimal(42);
+	lxy_put_str("\n");
+	lxy_put_str("lxy_put_hexa_lowercase(42);\n");
+	lxy_put_hexa_lowercase(42);
+	lxy_put_str("\n");
+	lxy_put_str("lxy_put_hexa_uppercase(42);\n");
+	lxy_put_hexa_uppercase(42);
+	lxy_put_str("\n");
+
+	lxy_put_str("lxy_put_signed_long(2147483649);\n");
+	lxy_put_signed_long(2147483649);
+	lxy_put_str("\n");
+
+	lxy_put_str("lxy_put_size_t(2147483649);\n");
+	lxy_put_size_t(2147483649);
+	lxy_put_str("\n");
+
+	free(ptr);
 	lxy_put_str("\n+++++++++++++++++++++++++++++++++\n\n");
 }

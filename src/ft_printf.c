@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:39:28 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/23 20:45:19 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/25 15:36:57 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ int	ft_printf(const char *passed_line, ...)
 			return (-1);
 	}
 	return (0);
+}
+
+int	process_flagg(t_flags *flags, const char *line)
+{
+	//if space and plus and number
+		// put plus
+	//if space
+		// put space
+	// if hash and number
+		// put 0x
 }
 
 int	process_specifier(t_flags *flags, va_list *args, const char *line)
@@ -81,13 +91,13 @@ int	call_put_func(const char *spec, va_list *args)
 		return ((*get_unsigned_int_func(spec))(va_arg(*args, unsigned int)));
 	else if (lxy_compare(spec, "l"))
 		return ((*get_long_func(spec))(va_arg(*args, long)));
-	else if ((is_eq(spec, "lu", 2)) || 
-		(is_eq(spec, "xl", 2)) || (is_eq(spec, "Xl", 2)))
+	else if ((is_equal(spec, "lu", 2)) || 
+		(is_equal(spec, "xl", 2)) || (is_equal(spec, "Xl", 2)))
 		return ((*get_unsigned_long_func(spec))(va_arg(*args, unsigned long)));
 	else if (lxy_compare(spec, "z"))
 		return ((*get_ssize_t_func(spec))(va_arg(*args, ssize_t)));
-	else if ((is_eq(spec, "zu", 2)) || (is_eq(spec, "xz", 2)) || 
-		(is_eq(spec, "Xz", 2)))
+	else if ((is_equal(spec, "zu", 2)) || (is_equal(spec, "xz", 2)) || 
+		(is_equal(spec, "Xz", 2)))
 		return ((*get_size_t_func(spec))(va_arg(*args, size_t)));
 	else if (*spec == 'p')
 		return (lxy_put_pointer(va_args(*args, void *)));

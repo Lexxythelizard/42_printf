@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 16:57:29 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/19 16:57:31 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/25 17:49:30 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,9 @@ int	lxy_put_unsigned_long(unsigned long lu)
 int	lxy_put_size_t(size_t zu)
 {
 	return (lxy_put_size_t_base(zu, DECDEC));
+}
+
+int	lxy_put_undecimal(unsigned int udec)
+{
+	return (lxy_put_unsigned_int_base(udec, DECDEC));
 }

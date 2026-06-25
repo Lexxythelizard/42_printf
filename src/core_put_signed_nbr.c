@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 16:57:06 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/19 20:49:28 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/25 17:52:17 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,30 @@ int	lxy_put_ssize_t(ssize_t sz)
 		pass = ((size_t)(sz * (-1)));
 	else
 		pass = (size_t)(sz);
+	wrt1 = lxy_put_unsigned_int_base(pass, DECDEC);
+	if (wrt1 < 0)
+		return (-1);
+	return (wrt0 + wrt1);
+}
+
+int	lxy_put_decimal(int dec)
+{
+	int				wrt0;
+	int				wrt1;
+	unsigned int	pass;
+
+	wrt0 = 0;
+	wrt1 = 0;
+	if (dec < 0)
+		wrt0 = lxy_put_char(45);
+	if (wrt0 < 0)
+		return (-1);
+	if (wrt0 && (dec == INT_MIN))
+		pass = ((unsigned int)((dec + 1) * (-1))) + 1;
+	else if (wrt0)
+		pass = ((unsigned int)(dec * (-1)));
+	else
+		pass = (unsigned int)(dec);
 	wrt1 = lxy_put_unsigned_int_base(pass, DECDEC);
 	if (wrt1 < 0)
 		return (-1);

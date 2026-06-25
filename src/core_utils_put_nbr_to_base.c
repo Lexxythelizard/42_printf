@@ -6,13 +6,14 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 16:58:43 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/19 22:13:16 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/25 15:04:33 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // --- icludes ---
 
 #include "../core/ft_printf_core.h"
+#include "../ft_printf.h"
 
 // --- DOC ---
 
@@ -73,7 +74,7 @@ int	lxy_put_unsigned_long_base(
 	base_n = (unsigned long)(lxy_len_if_valid(base));
 	if (base_n < 2)
 		return (-1);
-	while ((ul < (ULONG_MAX / divisor)) && ((lu / divisor) >= base_n))
+	while ((lu < (ULONG_MAX / divisor)) && ((lu / divisor) >= base_n))
 		divisor *= base_n;
 	while (divisor >= base_n)
 	{

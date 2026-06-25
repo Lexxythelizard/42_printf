@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:39:28 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/23 19:20:19 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/25 14:39:10 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,18 @@ int	is_specifier(unsigned char c)
 int	is_percent(unsigned char c)
 {
 	return (c == 37);
+}
+
+int	is_equal(const char *s1, const char *s2, int size)
+{
+	int	i;
+
+	i = 0;
+	while ((i < size) && (s1[i]) && (s2[i]))
+	{
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
+	}
+	return (1);
 }

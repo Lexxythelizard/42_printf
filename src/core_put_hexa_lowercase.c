@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 16:56:26 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/19 16:56:28 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/25 14:58:56 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ int	lxy_put_pointer(void *p)
 {
 	if (!p)
 		return (lxy_put_str(NIL));
-	return (lxy_put_unsigned_long_base(p, HEXDEC_LO));
+	return (lxy_put_unsigned_long_base((unsigned long)(p), HEXDEC_LO));
 }
