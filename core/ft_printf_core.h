@@ -32,6 +32,7 @@
 # define HEXDEC_LO "0123456789abcdef"
 # define HEXDEC_UP "0123456789ABCDEF"
 # define DECDEC "0123456789"
+# define NIL "nil"
 
 # define SSZ_MIN LONG_MIN
 # define SSZ_MAX LONG_MAX

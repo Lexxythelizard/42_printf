@@ -36,3 +36,10 @@ int	lxy_put_long_long_hexa_lowercase(size_t zu)
 {
 	return (lxy_put_size_t_base(zu, HEXDEC_LO));
 }
+
+int	lxy_put_pointer(void *p)
+{
+	if (!p)
+		return (lxy_put_str(NIL));
+	return (lxy_put_unsigned_long_base(p, HEXDEC_LO));
+}
