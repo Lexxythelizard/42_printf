@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:39:28 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/25 15:36:57 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/27 13:51:10 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,31 @@ int	ft_printf(const char *passed_line, ...)
 
 int	process_flagg(t_flags *flags, const char *line)
 {
-	//if space and plus and number
-		// put plus
-	//if space
-		// put space
-	// if hash and number
-		// put 0x
+	int	i;
+	int	wrt;
+	int	len;
+
+	i = 1;
+	len = 0;
+	while ((line[i]) && (is_flag(line[i])))
+	{
+		flags -> hash += (line[i] == 35);
+		flags -> wsp += (line[i] == 32);
+		flags -> plus += (line[i] == 43);
+		i++;
+	}
+	if ((is_specifier(line[i])))
+		return (0);
+	i = 0;
+	while (line[i]) && (is_flag(line[i]))
+	{
+		wrt = lxy_put_char(line[i]);
+		if (wrt < 0)
+			return (-1);
+		len += wrt;
+		i++;
+	}
+	return (len);
 }
 
 int	process_specifier(t_flags *flags, va_list *args, const char *line)
@@ -58,28 +77,32 @@ int	process_specifier(t_flags *flags, va_list *args, const char *line)
 	char	*ptr;
 	int		wrt;
 	int		len;
+	int		move;
 
 	ptr = (char *)(line);
-	ptr++;
-	while ((*ptr) && (is_flag(*ptr)))
-	{
-		flags -> hash += (*ptr == 35);
-		flags -> wsp += (*ptr == 32);
-		flags -> plus += (*ptr == 43);
-		ptr++;
-	}
-	wrt = process_flagg(ptr, flags);	// work with the member wrt
+	wrt = process_flagg(ptr, flags);
 	if (wrt < 0)
 		return (-1);
 	len += wrt;
+	move = flags -> hash + flags -> wsp + flags -> plus + 1;
+	ptr += move;
 	wrt = call_put_func(ptr, args);
 	if (wrt < 0)
 		return (-1);
+	courser += ((is_specifier(*ptr)) + move);
+		
+	if ()
 }
 
 int	call_put_func(const char *spec, va_list *args)
 {
-	if (*spec == 'c')
+	if ((is_equal(spec, "lu", 2)) || 
+		(is_equal(spec, "xl", 2)) || (is_equal(spec, "Xl", 2)))
+		return ((*get_unsigned_long_func(spec))(va_arg(*args, unsigned long)));
+	else if ((is_equal(spec, "zu", 2)) || (is_equal(spec, "xz", 2)) || 
+		(is_equal(spec, "Xz", 2)))
+		return ((*get_size_t_func(spec))(va_arg(*args, size_t)));
+	else if (*spec == 'c')
 		return ((*get_char_func(spec))(va_arg(*args, char)));
 	else if (*spec == 's')
 		return ((*get_string_func(spec))(va_arg(*args, char)));
@@ -91,14 +114,8 @@ int	call_put_func(const char *spec, va_list *args)
 		return ((*get_unsigned_int_func(spec))(va_arg(*args, unsigned int)));
 	else if (lxy_compare(spec, "l"))
 		return ((*get_long_func(spec))(va_arg(*args, long)));
-	else if ((is_equal(spec, "lu", 2)) || 
-		(is_equal(spec, "xl", 2)) || (is_equal(spec, "Xl", 2)))
-		return ((*get_unsigned_long_func(spec))(va_arg(*args, unsigned long)));
 	else if (lxy_compare(spec, "z"))
 		return ((*get_ssize_t_func(spec))(va_arg(*args, ssize_t)));
-	else if ((is_equal(spec, "zu", 2)) || (is_equal(spec, "xz", 2)) || 
-		(is_equal(spec, "Xz", 2)))
-		return ((*get_size_t_func(spec))(va_arg(*args, size_t)));
 	else if (*spec == 'p')
 		return (lxy_put_pointer(va_args(*args, void *)));
 	else
