@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:39:28 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/25 14:57:28 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/29 14:28:43 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 // --- define ---
 
-t_flags	*init_flag(void)
+t_flags	*init_flags(void)
 {
 	t_flags	*new_instance;
 
@@ -33,6 +33,14 @@ t_flags	*init_flag(void)
 	new_instance -> hash = 0;
 	new_instance -> wsp = 0;
 	new_instance -> plus = 0;
-	new_instance -> wrt = 0;
 	return (new_instance);
+}
+
+void	clean_flags(t_flags *flags)
+{
+	if (!flags)
+		return ;
+	flags -> hash = 0;
+	flags -> wsp = 0;
+	flags -> plus = 0;
 }

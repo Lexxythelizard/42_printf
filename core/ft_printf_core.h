@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:44:49 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/25 17:48:42 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/29 14:45:10 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,21 @@ int		is_percent(unsigned char c);
 int		is_equal(const char *s1, const char *s2, int size);
 
 // flags
-t_flags	*init_flag(void);
+t_flags	*init_flags(void);
+void	clean_flags(t_flags *flags);
+
+// process
+int		process_specifier(
+			t_flags *flags,
+			va_list *args,
+			const char *line,
+			int *idx);
+int		process_flagg(
+			t_flags *flags,
+			const char *line);
+
+// call put function
+int		call_put_func(const char *spec, va_list *args);
 
 // get functions
 int		(*get_char_func(const char *spec))(char c);
@@ -97,12 +111,12 @@ int		lxy_put_unsigned_int(unsigned int u);
 int		lxy_put_unsigned_long(unsigned long lu);
 int		lxy_put_size_t(size_t zu);
 
-int		lxy_put_hexa_lowercase(unsigned int u);
-int		lxy_put_hexa_uppercase(unsigned int u);
-int		lxy_put_long_hexa_lowercase(unsigned long lu);
-int		lxy_put_long_hexa_uppercase(unsigned long lu);
-int		lxy_put_long_long_hexa_lowercase(size_t zu);
-int		lxy_put_long_long_hexa_uppercase(size_t zu);
+int		lxy_put_hexa_lowercase(unsigned int u, t_flags *flags);
+int		lxy_put_hexa_uppercase(unsigned int u, t_flags *flags);
+int		lxy_put_long_hexa_lowercase(unsigned long lu, t_flags *flags);
+int		lxy_put_long_hexa_uppercase(unsigned long lu, t_flags *flags);
+int		lxy_put_long_long_hexa_lowercase(size_t zu, t_flags *flags);
+int		lxy_put_long_long_hexa_uppercase(size_t zu, t_flags *flags);
 
 int		lxy_put_pointer(void *ptr);
 
