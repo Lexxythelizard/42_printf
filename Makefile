@@ -6,7 +6,7 @@
 #    By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/10 19:30:37 by lenivorb          #+#    #+#              #
-#    Updated: 2026/06/25 14:44:18 by lenivorb         ###   ########.fr        #
+#    Updated: 2026/06/30 17:36:23 by lenivorb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,8 +73,9 @@ SrcCore_Files	=	$(Src_Dir)/core_call_put_layer_0.c \
 					$(Src_Dir)/core_utils_get_strlen.c \
     	            $(Src_Dir)/core_utils_put_nbr_to_base.c 
 
-Src_Files		=	$(SrcCore_Files) \
-					$(Src_Dir)/ft_printf.c 
+Printf_Files	=	$(Src_Dir)/ft_printf.c 
+
+Src_Files		=	$(SrcCore_Files)	$(Printf_Files)
 
 # --------------------> set default
 default: all
@@ -82,7 +83,9 @@ default: all
 
 SrcCore_Obj 	=	$(SrcCore_Files:.c=.o)
 
-Src_Obj 		=	$(Src_Files:.c=.o)
+Printf_Obj 		=	$(Printf_Files:.c=.o)
+
+All_Obj			=	$(SrcCore_Obj)	$(Printf_Obj)
 
 # -------------------- compile rules --------------------
 
@@ -95,7 +98,7 @@ $(SrcCore_Obj): %.o: %.c
 		$(Incl_Core) $< $(Dest) $@; \
 	fi
 
-$(Src_Obj): %.o: %.c
+$(Printf_Obj): %.o: %.c
 	if [ "$(DEBUGG_MODE)" -eq "1" ]; then \
 		$(Compile) $(Flags) $(Dont_link) $(Debugg_mode) \
 		$(Incl_Core) $(Incl_This) $< $(Dest) $@; \
@@ -123,8 +126,8 @@ clean_srccore:
 
 # -------------------- library --------------------
 
-$(NAME): $(Src_Obj)
-	ar rcs $(NAME) $(Src_Obj)
+$(NAME): $(All_Obj)
+	ar rcs $(NAME) $(All_Obj)
 
 # -------------------- object files --------------------
 

@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 16:57:06 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/29 14:05:13 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/30 18:19:02 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ int	lxy_put_ssize_t(ssize_t z, t_flags *flags)
 	int				wrt1;
 	unsigned long	pass;
 
-	if (sz == SSZ_MIN)
+	if (z == SSZ_MIN)
 		pass = (((size_t)(SSZ_MAX)) + 1);
 	else if (z < 0)
 		pass = ((size_t)(z * (-1)));
 	else
 		pass = (size_t)(z);
-	wrt0 = lxy_put_prefix(flags, (l < 0));
+	wrt0 = lxy_put_prefix(flags, (z < 0));
 	if (wrt0 < 0)
 		return (-1);
 	wrt1 = lxy_put_unsigned_int_base(pass, DECDEC);
@@ -95,18 +95,15 @@ int	lxy_put_decimal(int dec, t_flags *flags)
 	int				wrt1;
 	unsigned int	pass;
 
-	wrt0 = 0;
-	wrt1 = 0;
-	if (dec < 0)
-		wrt0 = lxy_put_char(45);
-	if (wrt0 < 0)
-		return (-1);
-	if (wrt0 && (dec == INT_MIN))
+	if (dec == INT_MIN)
 		pass = ((unsigned int)((dec + 1) * (-1))) + 1;
-	else if (wrt0)
+	else if (dec < 0)
 		pass = ((unsigned int)(dec * (-1)));
 	else
 		pass = (unsigned int)(dec);
+	wrt0 = lxy_put_prefix(flags, (dec < 0));
+	if (wrt0 < 0)
+		return (-1);
 	wrt1 = lxy_put_unsigned_int_base(pass, DECDEC);
 	if (wrt1 < 0)
 		return (-1);

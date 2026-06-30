@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   core_call_put_0.c                                  :+:      :+:    :+:   */
+/*   core_call_put_layer_1_0.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:39:28 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/25 14:49:57 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/30 17:56:14 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 /* u if		x else if		X else*/
 
-int	(*get_unsigned_int_func(const char *spec))(unsigned int u)
+int	(*get_unsigned_int_func(const char *spec))(unsigned int u, t_flags *flags)
 {
 	if (*spec == 'u')
 		return (&lxy_put_unsigned_int);
@@ -37,7 +37,7 @@ int	(*get_unsigned_int_func(const char *spec))(unsigned int u)
 
 /* lu if	xl else if		Xl else*/
 
-int	(*get_unsigned_long_func(const char *spec))(unsigned long ul)
+int	(*get_unsigned_long_func(const char *spec))(unsigned long ul, t_flags *flags)
 {
 	if (is_equal(spec, "lu", 2))
 		return (&lxy_put_unsigned_long);
@@ -49,7 +49,7 @@ int	(*get_unsigned_long_func(const char *spec))(unsigned long ul)
 
 /* zu if	xz else if		Xz else*/
 
-int	(*get_size_t_func(const char *spec))(size_t zu)
+int	(*get_size_t_func(const char *spec))(size_t zu, t_flags *flags)
 {
 	if (is_equal(spec, "zu", 2))
 		return (&lxy_put_size_t);

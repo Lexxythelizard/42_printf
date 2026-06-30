@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   core_call_put_1.c                                  :+:      :+:    :+:   */
+/*   core_call_put_layer_1_1.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:39:28 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/25 14:56:46 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/30 18:04:34 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 // --- define ---
 
-int	(*get_char_func(const char *spec))(char c)
+int	(*get_char_func(const char *spec))(const char c)
 {
 	(void)(spec);
 	return (&lxy_put_char);
@@ -35,13 +35,13 @@ int	(*get_string_func(const char *spec))(const char *s)
 	return (&lxy_put_str);
 }
 
-int	(*get_long_func(const char *spec))(long lu)
+int	(*get_long_func(const char *spec))(long lu, t_flags *flags)
 {
 	(void)(spec);
 	return (&lxy_put_signed_long);
 }
 
-int	(*get_ssize_t_func(const char *spec))(ssize_t z)
+int	(*get_ssize_t_func(const char *spec))(ssize_t z, t_flags *flags)
 {
 	(void)(spec);
 	return (&lxy_put_ssize_t);
@@ -49,7 +49,7 @@ int	(*get_ssize_t_func(const char *spec))(ssize_t z)
 
 /* i: if		d: else */
 
-int	(*get_signed_int_func(const char *spec))(int i)
+int	(*get_signed_int_func(const char *spec))(int i, t_flags *flags)
 {
 	if (*spec == 'i')
 		return (&lxy_put_signed_int);

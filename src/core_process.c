@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:39:28 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/29 14:45:05 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/06/30 18:12:55 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	process_flagg(t_flags *flags, const char *line)
 	if ((is_specifier(line[i])))
 		return (0);
 	i = 0;
-	while (line[i]) && (is_flag(line[i]))
+	while ((line[i]) && (is_flag(line[i])))
 	{
 		wrt = lxy_put_char(line[i]);
 		if (wrt < 0)
@@ -60,15 +60,15 @@ int	process_specifier(t_flags *flags, va_list *args, const char *line, int *idx)
 	int		move;
 
 	ptr = (char *)(line);
-	wrt0 = process_flagg(ptr, flags);
+	wrt0 = process_flagg(flags, ptr);
 	if (wrt0 < 0)
 		return (-1);
 	move = flags -> hash + flags -> wsp + flags -> plus + 1;
 	ptr += move;
-	wrt1 = call_put_func(ptr, args);
+	wrt1 = call_put_func(ptr, args, flags);
 	if (wrt1 < 0)
 		return (-1);
 	*idx += ((is_specifier(*ptr)) + move - 1);
 	clean_flags(flags);
-	return (wtr0 + wtr1);
+	return (wrt0 + wrt1);
 }
