@@ -68,7 +68,7 @@ int	process_specifier(t_flags *flags, va_list *args, const char *line, int *idx)
 	wrt1 = call_put_func(ptr, args);
 	if (wrt1 < 0)
 		return (-1);
-	*idx += ((is_specifier(*ptr)) + move);
+	*idx += ((is_specifier(*ptr)) + move - 1);
 	clean_flags(flags);
 	return (wtr0 + wtr1);
 }

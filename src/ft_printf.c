@@ -38,7 +38,8 @@ int	ft_printf(const char *passed_line, ...)
 	while (passed_line[idx])
 	{
 		if (is_percent(passed_line[idx]))
-			wrt0 = process_specifier(flags, &args, passed_line, &idx);
+			wrt0 = process_specifier(flags, &args, 
+				&(passed_line[idx]), &idx);
 		else
 			wrt0 = lxy_put_char(passed_line[idx]);
 		if (wrt0 < 0)
@@ -46,6 +47,7 @@ int	ft_printf(const char *passed_line, ...)
 		wrt1 += wrt0;
 		idx++;
 	}
+	free(flags);
 	va_end(args);
 	return (wrt1);
 }

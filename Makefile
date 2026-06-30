@@ -56,16 +56,17 @@ Incl_Core		=	$(Include) $(Core_Dir)
 
 Incl_Struct		=	$(Include) $(Struct_Dir)
 
-# soruce files
+		# soruce files
 
-SrcCore_Files	=	$(Src_Dir)/core_call_put_0.c \
-					$(Src_Dir)/core_call_put_1.c \
+SrcCore_Files	=	$(Src_Dir)/core_call_put_layer_0.c \
+					$(Src_Dir)/core_call_put_layer_1_0.c \
+					$(Src_Dir)/core_call_put_layer_1_1.c \
 					$(Src_Dir)/core_flags.c \
+					$(Src_Dir)/core_process.c \
 					$(Src_Dir)/core_put_abstraction.c \
 					$(Src_Dir)/core_put_chars.c \
     	            $(Src_Dir)/core_put_hexa_lowercase.c \
         	        $(Src_Dir)/core_put_hexa_uppercase.c \
-            	    $(Src_Dir)/core_put_hexa_uppercase.c \
 					$(Src_Dir)/core_put_signed_nbr.c \
 					$(Src_Dir)/core_put_unsigned_nbr.c \
 					$(Src_Dir)/core_scan.c \
@@ -94,6 +95,15 @@ $(SrcCore_Obj): %.o: %.c
 		$(Incl_Core) $< $(Dest) $@; \
 	fi
 
+$(Src_Obj): %.o: %.c
+	if [ "$(DEBUGG_MODE)" -eq "1" ]; then \
+		$(Compile) $(Flags) $(Dont_link) $(Debugg_mode) \
+		$(Incl_Core) $(Incl_This) $< $(Dest) $@; \
+	else \
+		$(Compile) $(Flags) $(Dont_link) \
+		$(Incl_Core) $(Incl_This) $< $(Dest) $@; \
+	fi
+
 # -------------------- commands --------------------
 
 all : $(NAME)
@@ -113,8 +123,8 @@ clean_srccore:
 
 # -------------------- library --------------------
 
-$(NAME): $(Obj_Files)
-	ar rcs $(NAME) $(Obj_Files)
+$(NAME): $(Src_Obj)
+	ar rcs $(NAME) $(Src_Obj)
 
 # -------------------- object files --------------------
 
