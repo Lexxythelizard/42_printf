@@ -6,7 +6,7 @@
 #    By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/10 19:30:37 by lenivorb          #+#    #+#              #
-#    Updated: 2026/06/30 17:36:23 by lenivorb         ###   ########.fr        #
+#    Updated: 2026/07/01 14:01:14 by lenivorb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,10 +116,10 @@ re : fclean all
 fclean: clean
 	rm -f $(NAME)
 
-clean: clean_src
+clean: clean_printf clean_srccore
 
-clean_src:
-	rm -f $(Src_Obj) $@
+clean_printf:
+	rm -f $(Printf_Obj) $@
 
 clean_srccore:
 	rm -f $(SrcCore_Obj) $@
@@ -140,4 +140,4 @@ create_testcore: $(SrcCore_Obj)
 
 # -------------------- PHONY --------------------
 
-.PHONY: all re fclean clean clean_src create_src create_testcore default
+.PHONY: all re fclean clean clean_printf clean_ src create_src create_testcore default

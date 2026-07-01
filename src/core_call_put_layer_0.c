@@ -6,7 +6,7 @@
 /*   By: lenivorb <lenivorb@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:39:28 by lenivorb          #+#    #+#             */
-/*   Updated: 2026/06/30 18:05:57 by lenivorb         ###   ########.fr       */
+/*   Updated: 2026/07/01 13:57:54 by lenivorb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	call_put_func(const char *spec, va_list *args, t_flags *flags)
 		return ((*get_string_func(spec))(va_arg(*args, const char*)));
 	else if (*spec == '%')
 		return (lxy_put_percent_sign());
-	else if ((*spec == 'i') && (*spec == 'd'))
+	else if ((*spec == 'i') || (*spec == 'd'))
 		return ((*get_signed_int_func(spec))(va_arg(*args, int), flags));
 	else if ((*spec == 'u') || (*spec == 'x') || (*spec == 'X'))
 		return ((*get_unsigned_int_func(spec))(va_arg(*args, unsigned int), flags));
